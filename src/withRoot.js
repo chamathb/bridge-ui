@@ -10,7 +10,7 @@ import {
   createGenerateClassName,
   jssPreset,
 } from '@material-ui/core/styles';
-import purple from '@material-ui/core/colors/purple';
+import teal from '@material-ui/core/colors/teal';
 import green from '@material-ui/core/colors/green';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
@@ -19,18 +19,44 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 const theme = createMuiTheme({
   palette: {
     primary: {
-      light: purple[300],
-      main: purple[500],
-      dark: purple[700],
+      light: teal[800],
+      main: teal[500],
+      dark: teal[700],
     },
     secondary: {
       light: green[300],
       main: green[500],
       dark: green[700],
     },
+    background: {
+      default: "#F5F5F5"
+    },
+  },
+  drawer: {
+    width: 240,
   },
   typography: {
+    // Use the system font instead of the default Roboto font.
+    fontFamily: [
+      '-apple-system',
+      'BlinkMacSystemFont',
+      '"Segoe UI"',
+      '"Roboto Mono"',
+      '"Helvetica Neue"',
+      'Arial',
+      'sans-serif',
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"',
+    ].join(','),
+    textTransform: "none",
     useNextVariants: true,
+    fontSize: 12,
+  },
+  overrides: {
+    MuiDrawer: {
+      "background-color": '#18202c',
+    },
   },
 });
 

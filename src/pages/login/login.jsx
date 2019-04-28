@@ -67,7 +67,20 @@ class Login extends React.Component {
     e.preventDefault();
     this.setState({ validate: true });
     const { username, password } = this.state;
+    // following is written to manage dummy login for usernames with 'user' or 'admin'
+    if (username.length > 0){
+      if (username.includes("user")) {
+        sessionStorage.setItem('role', 'user');
+        this.props.history.push('/home');
+      }
+      else if (username.includes("admin")) {
+        sessionStorage.setItem('role', 'admin');
+        this.props.history.push('/admin');
+      }
+    }
 
+    // realod to get proper view of the url
+    window.location.reload();
   };
 
 

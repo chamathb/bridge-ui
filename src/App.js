@@ -13,7 +13,7 @@ import withRoot from "./withRoot";
 import store from './state/store';
 
 import Progress from "./component/Progress";
-import Login from "./component/login";
+import Login from "./pages/login/login";
 
 const ProtectedApp = lazy( () => import("./ProtectedApp"));
 
