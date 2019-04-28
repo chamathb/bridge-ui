@@ -70,10 +70,6 @@ const styles = theme => ({
     padding: '0 2px',
     "min-height": "50px",
   },
-  content: {
-    flexGrow: 1,
-    padding: theme.spacing.unit,
-  },
   menuItem: {
     whiteSpace: "normal",
   },

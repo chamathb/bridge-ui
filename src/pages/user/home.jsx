@@ -9,9 +9,12 @@ import MenuDrawer from "../../component/MenuDrawer/MenuDrawer";
 import withStyles from '@material-ui/core/styles/withStyles';
 
 const styles = theme => ({
+  root: {
+    display: 'flex',
+  },
   content: {
     flexGrow: 1,
-    padding: theme.spacing.unit * 4,
+    padding: theme.spacing.unit * 3,
   },
 });
 
