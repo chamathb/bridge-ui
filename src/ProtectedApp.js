@@ -4,8 +4,9 @@
 import React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import Login from "./pages/login/login";
-import AdminHome from "./pages/admin/home";
+import AdminHome from "./pages/admin/home/home";
 import Home from "./pages/user/home";
+import CreateClient from "./pages/admin/client/CreateClient";
 
 export default class ProtectedApp extends React.Component {
   constructor(props) {
@@ -40,6 +41,9 @@ export default class ProtectedApp extends React.Component {
             path="/admin/home"
             component={this.state.isLoggedIn ? AdminHome : Login}
           />
+          <Route
+            path="/admin/manage/add-client"
+            component={this.state.isLoggedIn ? CreateClient : Login } />
           <Route
             path="/login"
             component={Login} />

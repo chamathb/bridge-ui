@@ -14,8 +14,13 @@ const styles = theme => ({
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing.unit * 3,
+    padding: theme.spacing.unit * 3 + 1,
+    marginTop: theme.spacing.unit,
   },
+  body: {
+    paddingTop: theme.spacing.unit * 6,
+    display: 'flex',
+  }
 });
 
 class Home extends React.Component{
@@ -28,12 +33,12 @@ class Home extends React.Component{
     return (
       <div className={classes.root}>
         <AppHeader />
-        <MenuDrawer />
-        <main className={classes.content}>
+        <div className={classes.body}>
+          <MenuDrawer />
           <div className={classes.content}>
             adasdda sad as dasd sd asdasd adsa
           </div>
-        </main>
+        </div>
       </div>
     );
   }

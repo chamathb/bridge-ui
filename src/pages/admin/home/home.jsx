@@ -1,9 +1,7 @@
-/**
- * Created by chamathbogahawatta on 14/04/2019.
- */
 import React from 'react';
 import PropTypes from 'prop-types';
-import MenuDrawer from "../../component/MenuDrawer/MenuDrawer";
+import AppHeader from '../../../component/AppHeader/AppHeader';
+import MenuDrawer from "../../../component/MenuDrawer/MenuDrawer";
 
 import withStyles from '@material-ui/core/styles/withStyles';
 
@@ -13,8 +11,13 @@ const styles = theme => ({
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing.unit * 3,
+    padding: theme.spacing.unit * 3 + 1,
+    marginTop: theme.spacing.unit,
   },
+  body: {
+    paddingTop: theme.spacing.unit * 6,
+    display: 'flex',
+  }
 });
 
 class AdminHome extends React.Component{
@@ -25,13 +28,15 @@ class AdminHome extends React.Component{
   render(){
     const {classes} = this.props;
     return (
-      <div>
-        <MenuDrawer />
-        <div className={classes.content}>
-          <div>Admin Home</div>
+      <div className={classes.root}>
+        <AppHeader />
+        <div className={classes.body}>
+          <MenuDrawer />
+          <div className={classes.content}>
+            adasdda sad as dasd sd asdasd adsa
+          </div>
         </div>
       </div>
-
     );
   }
 }

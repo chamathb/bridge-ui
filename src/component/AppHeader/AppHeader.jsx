@@ -29,7 +29,7 @@ const drawerWidth = 230;
 
 const styles = theme => ({
   root: {
-    display: 'flex',
+    display: 'block',
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
@@ -134,8 +134,8 @@ class AppHeader extends React.Component {
           position="fixed"
           className={classNames(classes.appBar)}
         >
-          <Toolbar disableGutters={!this.state.drawerOpened}>
-            <Typography variant="h6" color="inherit" noWrap>
+          <Toolbar >
+            <Typography variant="h5" color="inherit" noWrap>
               Bridge
             </Typography>
           </Toolbar>
