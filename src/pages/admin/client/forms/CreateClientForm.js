@@ -4,10 +4,12 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Divider from '@material-ui/core/Divider';
 import ClientContact from './ClientContact';
+import Button from '@material-ui/core/Button';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 
-const CreateClientForm = ({id, name, address, vat, tin, businessRegNo, conatcts}) => {
+const CreateClientForm = ({classes, id, name, address, vat, tin, businessRegNo, conatcts}) => {
+  console.log(classes);
   return (
     <React.Fragment>
       <Typography variant="h5" gutterBottom>
@@ -34,8 +36,17 @@ const CreateClientForm = ({id, name, address, vat, tin, businessRegNo, conatcts}
       <br />
       <Divider variant="middle" />
       <br />
-      <ClientContact />
 
+      <ClientContact />
+      <Grid item xs={12} md={12}>
+        <Grid container direction="row" justify="flex-end" alignItems="flex-start" >
+          <Grid item >
+            <Button color="primary" className={classes.addAnotherClient}>
+              Add Another Contact
+            </Button>
+          </Grid>
+        </Grid>
+      </Grid>
       <br />
     </React.Fragment>
   );

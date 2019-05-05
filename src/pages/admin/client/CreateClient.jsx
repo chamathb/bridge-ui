@@ -6,6 +6,7 @@ import CreateClientForm from './forms/CreateClientForm';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import Grid from '@material-ui/core/Grid';
 
 import withStyles from '@material-ui/core/styles/withStyles';
 
@@ -20,25 +21,28 @@ const styles = theme => ({
     maxWidth: "1024px",
     position: "relative",
     paddingBottom: '100px',
+    display: 'flex',
   },
   body: {
     paddingTop: theme.spacing.unit * 6,
     display: 'flex',
   },
   saveButton: {
-    margin: theme.spacing.unit,
-    position: 'absolute',
-    bottom: theme.spacing.unit * 2,
-    right: theme.spacing.unit * 2,
+    marginLeft: '10px',
+  },
+  buttonContainer: {
+    alignItems: 'right',
+    justifyContent: 'flex-end',
+    display: 'flex',
   },
   cancelButton: {
-    margin: theme.spacing.unit,
-    position: 'absolute',
-    bottom: theme.spacing.unit * 2,
-    right: theme.spacing.unit * 12,
+    marginLeft: '10px',
   },
   extendedIcon: {
     marginRight: theme.spacing.unit,
+  },
+  addAnotherClient: {
+    marginTop: '8px',
   },
 });
 
@@ -49,6 +53,7 @@ class CreateClient extends React.Component{
   }
   render(){
     const {classes} = this.props;
+    const createClientFormProps = {classes};
     return (
       <div className={classes.root}>
         <CssBaseline />
@@ -58,13 +63,23 @@ class CreateClient extends React.Component{
           <div className={classes.content}>
             <br />
             <form className={classes.container} noValidate autoComplete="off">
-              <CreateClientForm />
-              <Button variant="contained" color="primary" className={classes.saveButton}>
-                  Save
-              </Button>
-              <Button variant="outlined" className={classes.cancelButton}>
-                Cancel
-              </Button>
+              <CreateClientForm {...createClientFormProps} />
+              <br />
+              <Grid container
+                    direction="row-reverse"
+                    justify="flex-start"
+                    alignItems="flex-start">
+                <Grid item>
+                  <Button variant="contained" color="primary" className={classes.saveButton}>
+                      Save
+                  </Button>
+                </Grid>
+                <Grid item>
+                  <Button variant="outlined" className={classes.cancelButton}>
+                    Cancel
+                  </Button>
+                </Grid>
+              </Grid>
             </form>
           </div>
         </div>
