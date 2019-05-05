@@ -161,14 +161,6 @@ class MenuDrawer extends React.Component {
                 } />
               </ListItem>
             </Tooltip>
-            <Tooltip title="Create Vendor" aria-label="Create Vendor">
-              <ListItem  classes={{root:classes.menuItem, selected: 'selected'}} button key="Create Vendor">
-                <ListItemIcon className={classes.menuItemIcon}><VendorIcon /></ListItemIcon>
-                <ListItemText primary={
-                  <Typography className={classes.menuItemText} >Create Vendor</Typography>
-                } />
-              </ListItem>
-            </Tooltip>
             <Tooltip title="Create Client" aria-label="Create Client">
               <ListItem classes={{root:classes.menuItem, selected: 'selected'}} button key="Create Client" component={Link}
                         to='/admin/manage/add-client'
@@ -176,6 +168,16 @@ class MenuDrawer extends React.Component {
                 <ListItemIcon className={classes.menuItemIcon}><ClientIcon /></ListItemIcon>
                 <ListItemText primary={
                   <Typography className={classes.menuItemText} >Create Client</Typography>
+                } />
+              </ListItem>
+            </Tooltip>
+            <Tooltip title="Create Vendor" aria-label="Create Vendor">
+              <ListItem  classes={{root:classes.menuItem, selected: 'selected'}} button key="Create Vendor" component={Link}
+                         to='/admin/manage/add-vendor'
+                         selected={this.props.location.pathname === '/admin/manage/add-vendor'} >
+                <ListItemIcon className={classes.menuItemIcon}><VendorIcon /></ListItemIcon>
+                <ListItemText primary={
+                  <Typography className={classes.menuItemText} >Create Vendor</Typography>
                 } />
               </ListItem>
             </Tooltip>

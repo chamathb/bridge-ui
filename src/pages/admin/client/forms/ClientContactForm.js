@@ -5,10 +5,10 @@ import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 
-const ClientContact = ({id, name, address, vat, tin, businessRegNo, conatcts}) => {
+const ClientContactForm = ({id, name, address, vat, tin, businessRegNo, conatcts}) => {
   return (
     <React.Fragment>
-      <Typography variant="h8" gutterBottom>
+      <Typography variant="h6" gutterBottom>
         Contacts
       </Typography>
       <Grid container spacing={24}>
@@ -32,4 +32,4 @@ const ClientContact = ({id, name, address, vat, tin, businessRegNo, conatcts}) =
   );
 };
 
-export default ClientContact;
+export default ClientContactForm;

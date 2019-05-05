@@ -33,7 +33,7 @@ class AdminHome extends React.Component{
         <div className={classes.body}>
           <MenuDrawer />
           <div className={classes.content}>
-            adasdda sad as dasd sd asdasd adsa
+
           </div>
         </div>
       </div>
