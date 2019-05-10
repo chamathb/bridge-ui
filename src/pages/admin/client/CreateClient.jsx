@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 import AppHeader from '../../../component/AppHeader/AppHeader';
 import MenuDrawer from "../../../component/MenuDrawer/MenuDrawer";
 import CreateClientForm from './forms/CreateClientForm';
@@ -7,6 +8,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
+import { getClient } from './state/Actions';
 
 import withStyles from '@material-ui/core/styles/withStyles';
 
@@ -49,11 +51,19 @@ const styles = theme => ({
 class CreateClient extends React.Component{
   constructor(props){
     super(props);
-    this.state = {};
+    this.state = {
+      client: null,
+    };
   }
+
+  componentDidMount() {
+    const {getClient} = this.props;
+    getClient();
+  }
+
   render(){
-    const {classes} = this.props;
-    const createClientFormProps = {classes};
+    const {classes, client} = this.props;
+    const createClientFormProps = {classes, client};
     return (
       <div className={classes.root}>
         <CssBaseline />
@@ -92,4 +102,13 @@ CreateClient.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(CreateClient);
+const mapStateToProps = ({Client}) => {
+  const {client} = Client;
+  return {client};
+};
+
+const mapActionsToProps = {
+  getClient,
+};
+
+export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(CreateClient));
