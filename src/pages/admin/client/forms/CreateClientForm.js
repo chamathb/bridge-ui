@@ -8,7 +8,8 @@ import Button from '@material-ui/core/Button';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 
-const CreateClientForm = ({classes, id, name, address, vat, tin, businessRegNo, conatcts}) => {
+const CreateClientForm = ({classes, client = {} }) => {
+  console.log('$$$$$$$$$$$$$',client);
   return (
     <React.Fragment>
       <Typography variant="h5" gutterBottom>
@@ -16,7 +17,7 @@ const CreateClientForm = ({classes, id, name, address, vat, tin, businessRegNo, 
       </Typography>
       <Grid container spacing={24}>
         <Grid item xs={6} md={6}>
-          <TextField required id="clientName" label="Client Name" fullWidth variant="outlined" />
+          <TextField required id="clientName" value={client && client.name ? client.name : ''} label="Client Name" fullWidth variant="outlined" />
         </Grid>
         <Grid item xs={6} md={6}>
           <TextField required id="clientName" label="Business Registration Number" fullWidth variant="outlined" />
