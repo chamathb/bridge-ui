@@ -5,27 +5,28 @@ import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 
-const ClientContactForm = ({id, name, address, vat, tin, businessRegNo, conatcts}) => {
+const ClientContactForm = ({contact = {}}) => {
+  console.log(contact);
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
         Contacts
       </Typography>
       <Grid container spacing={24}>
-        <Grid item xs={3} sm={3}>
-          <TextField required id="contactName" label="Contact Name" fullWidth variant="outlined" />
+        <Grid item xs={3} sm={2}>
+          <TextField required id="contactName" value={contact && contact.name ? contact.name : ''} label="Contact Name" fullWidth variant="outlined" />
         </Grid>
         <Grid item xs={3} sm={2}>
-          <TextField id="contactDesignation" label="Designation" fullWidth variant="outlined" />
+          <TextField id="contactDesignation" value={contact && contact.designation ? contact.designation : ''} label="Designation" fullWidth variant="outlined" />
         </Grid>
         <Grid item xs={3} md={2}>
-          <TextField required id="contactNumber" label="Contact Number" fullWidth variant="outlined" />
-        </Grid>
-        <Grid item xs={3} md={2}>
-          <TextField required id="contactEmail" label="Email" fullWidth variant="outlined" />
+          <TextField required id="contactNumber" value={contact && contact.mobile ? contact.mobile : ''} label="Contact Number" fullWidth variant="outlined" />
         </Grid>
         <Grid item xs={3} md={3}>
-          <TextField id="contactDetails" label="Details" fullWidth variant="outlined" />
+          <TextField required id="contactEmail" value={contact && contact.email ? contact.email : ''} label="Email" fullWidth variant="outlined" />
+        </Grid>
+        <Grid item xs={3} md={3}>
+          <TextField id="contactDetails" value={contact && contact.details ? contact.details : ''} label="Details" fullWidth variant="outlined" />
         </Grid>
       </Grid>
     </React.Fragment>

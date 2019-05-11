@@ -8,8 +8,18 @@ import Button from '@material-ui/core/Button';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 
-const CreateClientForm = ({classes, client = {} }) => {
-  console.log('$$$$$$$$$$$$$',client);
+const renderContactRows = (client) => {
+  if(client && client.contacts) {
+    return client.contacts.map((contact, index) => {
+      const clientFormProps = {contact}
+      return <ClientContactForm {...clientFormProps}/>
+    });
+  } else {
+    return <ClientContactForm />
+  }
+};
+
+const CreateClientForm = ({classes, client = {}, addClient }) => {
   return (
     <React.Fragment>
       <Typography variant="h5" gutterBottom>
@@ -20,24 +30,25 @@ const CreateClientForm = ({classes, client = {} }) => {
           <TextField required id="clientName" value={client && client.name ? client.name : ''} label="Client Name" fullWidth variant="outlined" />
         </Grid>
         <Grid item xs={6} md={6}>
-          <TextField required id="clientName" label="Business Registration Number" fullWidth variant="outlined" />
+          <TextField required id="clientBrg" value={client && client.brg ? client.brg : ''} label="Business Registration Number" fullWidth variant="outlined" />
         </Grid>
         <Grid item xs={12} md={12}>
-          <TextField required id="clientAddress" label="Client Address" fullWidth variant="outlined" />
+          <TextField required id="clientAddress" value={client && client.address ? client.address : ''} label="Client Address" fullWidth variant="outlined" />
         </Grid>
         <Grid item xs={6} md={6}>
-          <TextField required id="vat" label="VAT" fullWidth variant="outlined" />
+          <TextField required id="clientVat" value={client && client.vat ? client.vat : ''} label="VAT" fullWidth variant="outlined" />
         </Grid>
         <Grid item xs={6} md={6}>
-          <TextField required id="tin" label="TIN" fullWidth variant="outlined" />
+          <TextField required id="clientTin" value={client && client.tin ? client.tin : ''} label="TIN" fullWidth variant="outlined" />
         </Grid>
       </Grid>
       <br />
       <br />
       <Divider variant="middle" />
       <br />
-
-      <ClientContactForm />
+      {
+          renderContactRows(client)
+      }
       <Grid item xs={12} md={12}>
         <Grid container direction="row" justify="flex-end" alignItems="flex-start" >
           <Grid item >

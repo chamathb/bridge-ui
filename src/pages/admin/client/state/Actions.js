@@ -2,6 +2,7 @@ import {getClientById} from '../../../../repositories/ClientRepository';
 
 export const ClientEvents = {
   CLIENT_DATA_RECEIVED: 'CLIENT_DATA_RECEIVED',
+  ADD_CLIENT_CONTACT: 'ADD_CLIENT_CONTACT',
 };
 
 export const getClient = () => {
@@ -26,6 +27,12 @@ export const getClient = () => {
         },
       })
     }, 1000);
+  };
+};
+
+export const addContact = () => {
+  return (dispatch) => {
+    dispatch({ type: ClientEvents.ADD_CLIENT_CONTACT})
   };
 };
 
