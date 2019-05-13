@@ -13,7 +13,6 @@ import Grid from '@material-ui/core/Grid';
 import { getClient, addContact } from './state/Actions';
 import TextField from '@material-ui/core/TextField';
 import Divider from '@material-ui/core/Divider';
-import ClientContactForm from './forms/ClientContactForm';
 
 import withStyles from '@material-ui/core/styles/withStyles';
 
