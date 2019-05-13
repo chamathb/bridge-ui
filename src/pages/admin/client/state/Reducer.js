@@ -5,7 +5,20 @@ import update from 'immutability-helper';
 import { ClientEvents } from './Actions';
 
 const INITIAL_STATE = {
-  client: null,
+  client: {
+    name: '',
+    brg: '',
+    address: '',
+    vat: '',
+    tin: '',
+    contacts: [{
+      name: '',
+      designation:'',
+      mobile: '',
+      email: '',
+      details: '',
+    }]
+  },
 };
 
 export const ClientReducer = (state = INITIAL_STATE, { type, payload = {} }) => {

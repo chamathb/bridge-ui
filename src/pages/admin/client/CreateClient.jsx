@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
+import { Formik } from "formik";
+import * as Yup from "yup";
 import AppHeader from '../../../component/AppHeader/AppHeader';
 import MenuDrawer from "../../../component/MenuDrawer/MenuDrawer";
 import CreateClientForm from './forms/CreateClientForm';
@@ -49,39 +51,67 @@ const styles = theme => ({
   addAnotherClient: {
     marginTop: '8px',
   },
+  button: {
+    margin: theme.spacing.unit * 2,
+  }
 });
 
-const renderContactRows = (client) => {
-  if(client && client.contacts) {
-    return client.contacts.map((contact, index) => {
-      const clientFormProps = {contact};
-      return <ClientContactForm {...clientFormProps}/>
-    });
-  } else {
-    return <ClientContactForm />
-  }
-};
+const validationSchema = Yup.object({
+  name: Yup.string("Name")
+    .required("Name cannot be empty"),
+  brg: Yup.string("Business Registration Number")
+    .required("Business registration number cannot be empty"),
+  address: Yup.string("Address")
+    .required("Address cannot be empty"),
+  vat: Yup.string("VAT")
+    .required("VAT cannot be empty"),
+  tin: Yup.string("TIN")
+    .required("TIN cannot be empty"),
+  contacts: Yup.array()
+    .of(
+      Yup.object().shape({
+        name: Yup.string("Name")
+          .required("Contact name cannot be empty"),
+        designation: Yup.string("Designation")
+          .required("Designation cannot be empty"),
+        mobile: Yup.string("mobile")
+          .required("Contact number cannot be empty"),
+        email: Yup.string("Name")
+          .required("email cannot be empty"),
+        details: Yup.string("Name"),
+      })
+    )
+
+});
 
 class CreateClient extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      client: null,
+      client: {
+        name: '',
+        brg: '',
+        address: '',
+        vat: '',
+        tin: '',
+        contacts: [{
+          name: '',
+          designation:'',
+          mobile: '',
+          email: '',
+          details: '',
+        }]
+      },
     };
   }
 
   componentDidMount() {
-    const {getClient} = this.props;
-    getClient();
-  }
 
-  addContactRow() {
-    const {addContact} = this.props;
-    addContact();
   }
 
   render(){
     const {classes, client} = this.props;
+    const initialValue = this.state.client;
     return (
       <div className={classes.root}>
         <CssBaseline />
@@ -90,63 +120,20 @@ class CreateClient extends React.Component{
           <MenuDrawer />
           <div className={classes.content}>
             <br />
-            <form className={classes.container} noValidate autoComplete="off" >
-              <Typography variant="h5" gutterBottom>
-                Client Management
-              </Typography>
-              <Grid container spacing={24}>
-                <Grid item xs={6} md={6}>
-                  <TextField required id="clientName" value={client && client.name ? client.name : ''} label="Client Name" fullWidth variant="outlined" />
-                </Grid>
-                <Grid item xs={6} md={6}>
-                  <TextField required id="clientBrg" value={client && client.brg ? client.brg : ''} label="Business Registration Number" fullWidth variant="outlined" />
-                </Grid>
-                <Grid item xs={12} md={12}>
-                  <TextField required id="clientAddress" value={client && client.address ? client.address : ''} label="Client Address" fullWidth variant="outlined" />
-                </Grid>
-                <Grid item xs={6} md={6}>
-                  <TextField required id="clientVat" value={client && client.vat ? client.vat : ''} label="VAT" fullWidth variant="outlined" />
-                </Grid>
-                <Grid item xs={6} md={6}>
-                  <TextField required id="clientTin" value={client && client.tin ? client.tin : ''} label="TIN" fullWidth variant="outlined" />
-                </Grid>
-              </Grid>
-              <br />
-              <br />
-              <Divider variant="middle" />
-              <br />
-              {
-                renderContactRows(client)
-              }
+            <Grid container spacing={24}>
               <Grid item xs={12} md={12}>
-                <Grid container direction="row" justify="flex-end" alignItems="flex-start" >
-                  <Grid item >
-                    <Button color="primary" className={classes.addAnotherClient}
-                            onClick={() => { this.addContactRow() }}>
-                      Add Another Contact
-                    </Button>
-                  </Grid>
-                </Grid>
+                <Typography variant="h5">
+                  Client Management
+                </Typography>
               </Grid>
-              <br />
-              <Divider variant="fullWidth" />
-              <br />
-              <Grid container
-                    direction="row-reverse"
-                    justify="flex-start"
-                    alignItems="flex-start">
-                <Grid item>
-                  <Button variant="contained" color="primary" className={classes.saveButton}>
-                      Save
-                  </Button>
-                </Grid>
-                <Grid item>
-                  <Button variant="outlined" className={classes.cancelButton} >
-                    Cancel
-                  </Button>
-                </Grid>
+              <Grid item xs={12} md={12}>
+                <Formik
+                  render={ props =>
+                    <CreateClientForm {...props} /> }
+                  initialValues={initialValue}
+                  validationSchema={validationSchema} />
               </Grid>
-            </form>
+            </Grid>
           </div>
         </div>
       </div>
@@ -159,13 +146,9 @@ CreateClient.propTypes = {
 };
 
 const mapStateToProps = ({Client}) => {
-  const {client} = Client;
-  return {client};
 };
 
 const mapActionsToProps = {
-  getClient,
-  addContact,
 };
 
 export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(CreateClient));
