@@ -23,7 +23,7 @@ const RegulatoryAttachPaper = withStyles({
 const CreateRegulatoryForm = props => {
   const {
     values: {
-      name, testName, releaseTime, requirement, averageRelease, stage,
+      name, testName, releaseTime, requirement, averageRelease, stage, attachments
     },
     errors,
     touched,
@@ -38,7 +38,7 @@ const CreateRegulatoryForm = props => {
     setFieldTouched(name, true, false);
   };
 
-  const regulatoryAttch = { name : "", testName : "", releaseTime : "", requirement : "", averageRelease : "", stage : ""};
+  const attachment = { docName : "", description : "", mandatory : ""};
   return(
     <form onSubmit = {handleSubmit}>
     <Grid  container spacing = {24}>
@@ -127,7 +127,7 @@ const CreateRegulatoryForm = props => {
               <br />
               <FieldArray
                 name = "attachments"
-                render= {arrayaHlpers => (
+                render= {arrayHelpers => (
                   <div>
                     <Grid container direction = "row" justify = "space-between" alignItems = "baseline" >
                       <Grid item>
@@ -137,8 +137,8 @@ const CreateRegulatoryForm = props => {
                       </Grid>
                       <Grid item >
                         <Button color = "primary"
-                            onClick = {() => {arrayaHlpers.push(regulatoryAttch)}}>
-                              {contacts && contacts.length >0 ? "Add Another Contact" : "Add Contact"}
+                            onClick = {() => {arrayHelpers.push(attachment)}}>
+                              {attachments && attachments.length >0 ? "Add Another Contact" : "Add Contact"}
 
                         </Button>
                       </Grid>
@@ -147,7 +147,7 @@ const CreateRegulatoryForm = props => {
 
 
                     {
-                      contacts.map ((contact, index) => 
+                      attachments.map ((attachment, index) =>
                       (
                         <RegulatoryAttachPaper elevation= {0}>
                           {index > 0 ? <React.Fragment>
@@ -161,14 +161,14 @@ const CreateRegulatoryForm = props => {
                                <Grid container direction="row" spacing={8} justify="space-between">
                    
                                 <Grid item xs ={4}>
-                                  <Field name ={`contacts.${index}.name`}
+                                  <Field name ={`attachment.${index}.name`}
                                       label  = "Document Name"
                                       fullWidth
                                       component = {TextField}
                                       variant = "outlined"/>
                                </Grid> 
                                <Grid item xs = {3}>
-                                 <Field name = {`contacts.${index}.description`}
+                                 <Field name = {`attachment.${index}.description`}
                                       label = "Description"
                                       fullWidth
                                       component =  {TextField}
@@ -177,7 +177,7 @@ const CreateRegulatoryForm = props => {
                             </Grid>
 
                             <Grid item xs= {3}>
-                              <Field name ={`contacts.${index}.mandatory`}
+                              <Field name ={`attachment.${index}.mandatory`}
                                 label = "Mandatory"
                                 fullWidth
                                 component = {TextField}
@@ -186,7 +186,7 @@ const CreateRegulatoryForm = props => {
                             
                           <Grid item>
                               <IconButton aria-label = "Delete"
-                                onClick = {() => arrayaHlpers.remove(index)}>
+                                onClick = {() => arrayHelpers.remove(index)}>
                                   <DeleteIcon/>
                               </IconButton>
                           </Grid>

@@ -10,7 +10,6 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
-import { getClient, addContact } from './state/Actions';
 import TextField from '@material-ui/core/TextField';
 import Divider from '@material-ui/core/Divider';
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -91,18 +90,18 @@ const valiadtionSchema = Yup.object({
     .required("Average release time cannot be empty"),
   stage:Yup.string("Approval Obtaining Stage")
     .required("Approval obtaing stage cannot be empty"),
-    attachements:Yup.array()
-      .of(
-        Yup.object().shape({
-          docName: Yup.string("Document Name")
-            .required("Document name cannot be empty"),
-          description: Yup.string("Description")
-            .required("Description cannot be empty"),
-          mandatory : Yup.string("Mandatory")
-            .required("Mandatory field cannot be empty"),
+  attachements:Yup.array()
+    .of(
+      Yup.object().shape({
+        docName: Yup.string("Document Name")
+          .required("Document name cannot be empty"),
+        description: Yup.string("Description")
+          .required("Description cannot be empty"),
+        mandatory : Yup.string("Mandatory")
+          .required("Mandatory field cannot be empty"),
 
-        })
-      )
+      })
+    )
 });
 
 class CreateRegulatory extends React.Component{
@@ -110,7 +109,6 @@ class CreateRegulatory extends React.Component{
   {
     super(props);
     this.state= {
-
     };
   }
 
@@ -119,8 +117,20 @@ class CreateRegulatory extends React.Component{
   }
 
   render(){
-    const{classes, client}  = this.props;
-    const initialValue = this.state.client;
+    const{classes}  = this.props;
+    const initialValue = {
+      name: '',
+      testName: '',
+      releaseTime: '',
+      requirement: '',
+      averageRelease: '',
+      stage: '',
+      attachments: [{
+        docName: '',
+        description: '',
+        mandatory: '',
+      }],
+    };
     return(
       <div className= {classes.root}>
       <CssBaseline/>
@@ -167,4 +177,4 @@ const mapActionToProps = {
 
 };
 
-export default connect (mapStateToProps, mapActionToProps) (withStyles(styles)(CreateReglatory));
+export default connect (mapStateToProps, mapActionToProps) (withStyles(styles)(CreateRegulatory));
