@@ -9,11 +9,12 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
-import { getClient, addContact } from './state/Actions';
 import TextField from '@material-ui/core/TextField';
 import Divider from '@material-ui/core/Divider';
 import withStyles from '@material-ui/core/styles/withStyles';
 
+import { getRegulatory, addAttachment } from './state/Actions';
+import { getClient, addContact } from './state/Actions';
 import CreateRegulatoryForm from './forms/CreateRegulatoryForm';
 
 const styles = theme => ({
@@ -91,7 +92,8 @@ const valiadtionSchema = Yup.object({
   stage: Yup.string("Approval Obtaining Stage")
     .required("Approval obtaing stage cannot be empty"),
 
-  attachements: Yup.array()
+  attachments: Yup.array()
+
     .of(
       Yup.object().shape({
         docName: Yup.string("Document Name")
@@ -179,7 +181,7 @@ CreateRegulatory.propTypes = {
 
 };
 
-const mapStateToProps = ({regulatory }) => {
+const mapStateToProps = ({Regulatory }) => {
 
 };
 

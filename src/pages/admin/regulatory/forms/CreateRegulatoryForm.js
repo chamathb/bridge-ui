@@ -127,7 +127,7 @@ const CreateRegulatoryForm = props => {
       <Divider variant="middle" />
       <br />
       <FieldArray
-        name="attachments"
+        name="attachment"
         render={arrayHelpers => (
           <div>
             <Grid container direction="row" justify="space-between" alignItems="baseline" >
@@ -137,19 +137,19 @@ const CreateRegulatoryForm = props => {
                         </Typography>
               </Grid>
               <Grid item >
-                <Button color="primary"
-                  onClick={() => { arrayHelpers.push(attachment) }}>
-                  {attachment && attachment.length > 0 ? "Add Another Attachment" : "Add Attachment"}
-
-
-                </Button>
+                <Button color="primary" 
+                  onClick = {() => {arrayHelpers.push(attachment)}}>
+                  {attachments && attachments.length > 0 ? "Add Another Attachment" : "Add Attachment"}
+                 </Button>
               </Grid>
             </Grid>
-            <br />
+
+           <br />
+           
 
 
             {
-              attachment.map((attachment, index) =>
+              attachments.map ((attachment, index) =>
                 (
                   <RegulatoryAttachPaper elevation={0}>
                     {index > 0 ? <React.Fragment>
