@@ -13,8 +13,6 @@ import TextField from '@material-ui/core/TextField';
 import Divider from '@material-ui/core/Divider';
 import withStyles from '@material-ui/core/styles/withStyles';
 
-import { getRegulatory, addAttachment } from './state/Actions';
-import { getClient, addContact } from './state/Actions';
 import CreateRegulatoryForm from './forms/CreateRegulatoryForm';
 
 const styles = theme => ({
@@ -77,7 +75,7 @@ const styles = theme => ({
   }
 });
 
-const valiadtionSchema = Yup.object({
+const validationSchema = Yup.object({
 
   name: Yup.string("Authority Institution Name")
     .required("Authority Institution Name cannot be empty"),
@@ -112,22 +110,6 @@ class CreateRegulatory extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      regulatory:{ 
-        name :"",
-        testName: "",
-        release: "",
-        Timerequirement:"",
-        averageRelease:"",
-        stage:"",
-
-          attachment : [{
-            docName: "",
-            description: "",
-            mandatory : "",
-          }]
-
-      }
-
     };
   }
 
@@ -139,6 +121,15 @@ class CreateRegulatory extends React.Component {
   render() {
 
     const {classes} = this.props;
+    const initialRegulatory = {
+        name: "",
+        testName: "",
+        release: "",
+        Timerequirement:"",
+        averageRelease:"",
+        stage:"",
+        attachments : [{}],
+    };
     //const { classes, regulatory } = this.props;
     //const initialValue = this.state.client;
 
@@ -163,8 +154,8 @@ class CreateRegulatory extends React.Component {
                 <Formik
                   render={props =>
                     <CreateRegulatoryForm {...props} />}
-                  //initialValues={initialValue} 
-                  validationSchema={valiadtionSchema} />
+                  initialValues={initialRegulatory}
+                  validationSchema={validationSchema} />
               </Grid>
             </Grid>
           </div>

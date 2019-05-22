@@ -23,7 +23,7 @@ const RegulatoryAttachPaper = withStyles({
 const CreateRegulatoryForm = props => {
   const {
     values: {
-      name, testName, releaseTime, requirement, averageRelease, stage,
+      name, testName, releaseTime, requirement, averageRelease, stage, attachments
     },
     errors,
     touched,
