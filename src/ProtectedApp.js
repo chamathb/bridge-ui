@@ -9,6 +9,7 @@ import Home from "./pages/user/home";
 import CreateClient from "./pages/admin/client/CreateClient";
 import CreateVendor from "./pages/admin/vendor/CreateVendor";
 import CreateRegulatory from "./pages/admin/regulatory/CreateRegulatory";
+import CreateForwarder from "./pages/admin/forwarder/CreateForwarder";
 
 export default class ProtectedApp extends React.Component {
   constructor(props) {
@@ -52,6 +53,11 @@ export default class ProtectedApp extends React.Component {
           <Route
             path="/admin/manage/add-regulatory"
             component={this.state.isLoggedIn ? CreateRegulatory : Login } />
+          <Route
+            path = "/admin/manage/add-forwarder"
+            component={this.state.isLoggedIn ? CreateForwarder : Login} />
+
+          
           <Route
             path="/login"
             component={Login} />

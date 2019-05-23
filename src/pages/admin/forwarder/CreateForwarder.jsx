@@ -5,16 +5,15 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import AppHeader from '../../../component/AppHeader/AppHeader';
 import MenuDrawer from "../../../component/MenuDrawer/MenuDrawer";
-import CreateForwarderForm from 'forms/CreateForwarderForm';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
-import { getClient, addContact } from './state/Actions';
+//import { getClient, addContact } from './state/Actions';
 import TextField from '@material-ui/core/TextField';
 import Divider from '@material-ui/core/Divider';
-
 import withStyles from '@material-ui/core/styles/withStyles';
+import CreateForwarderForm from './forms/CreateForwarderForm';
 
 const styles = theme => ({
   root: {
@@ -56,27 +55,28 @@ const styles = theme => ({
 });
 
 const validationSchema = Yup.object({
-  name: Yup.string("Name")
+  vendor: Yup.string("Vendor Name")
     .required("Name cannot be empty"),
-  brg: Yup.string()
-    .required("Business registration number cannot be empty"),
-  address: Yup.string("Address")
-    .required("Address cannot be empty"),
-  type: Yup.string("type")
+    typeofVendor: Yup.string("type")
     .required("Please select type"),
-  sAddress: Yup.string("sAddress")
-    .required("Swift address cannot be empty"),
-  tin: Yup.string("TIN")
+    address: Yup.string("Address")
+    .required("Address cannot be empty"),
+    brg: Yup.string()
+    .required("Business registration number cannot be empty"),
+    tin: Yup.string("TIN")
     .required("TIN cannot be empty"),
+    swiftAddress: Yup.string("swiftAddress")
+    .required("Swift address cannot be empty"),
   
-  contacts: Yup.array()
+  
+    contactInfo: Yup.array()
     .of(
       Yup.object().shape({
         name: Yup.string("Name")
           .required("Contact name cannot be empty"),
         designation: Yup.string("desg")
           .required("Designation cannot be empty"),
-        contact: Yup.string("contact")
+        contactNum: Yup.string("contact")
           .required("Contact number cannot be empty"),
         email: Yup.string("email")
           .required("email cannot be empty"),
@@ -85,59 +85,42 @@ const validationSchema = Yup.object({
         company: Yup.string("company")
           .required("Company name cannot be empty"),
         access: Yup.string ("access")
-          .required(""),
+          .required("Cannot be empty"),
         userName: Yup.string ("userName")
           .required("System user name cannot be empty"),
-        type: Yup.string ("type")
+        types: Yup.string ("type")
           .required("Access Type cannot be empty"),
       })
     )
 
 });
 
-class CreateForwarder extends React.Component{
+class CreateForwarder extends React.Component {
   constructor(props){
     super(props);
     this.state = { 
-        forwarder: {
-            name : "",
-            type : "",
-            address : "",
-            brg : "",
-            tin : "",
-            sAddress : "",
-            contacts:[{
-                name :"",
-                designation : "",
-                contact : "",
-                email : "",
-                details : "",
-                company : "",
-                access : "",
-                userName: "",
-                type : "",
-            }],    
-        },
+     
     };
   }
 
-  class CreateForwarder extends React.Component{
-    constructor(props)
-    {
-      super(props);
-      this.state = { 
-
-      };
-    }
-  
-
-  componentDidMount() {
+componentDidMount() {
 
   }
 
   render(){
-    const {classes, client} = this.props;
-    const initialValue = this.state.client;
+    const {classes} = this.props; //{classes, forwarder}
+    //const initialValue = this.state.forwarder;
+    const initialForwarder = {
+      vendor :"",
+      typeofVendor :"",
+      address :"",
+      brg :"",
+      tin :"",
+      swiftAddress :"",
+      contactInfo:[{}],   
+    };
+
+
     return (
       <div className={classes.root}>
         <CssBaseline />
@@ -156,7 +139,7 @@ class CreateForwarder extends React.Component{
                 <Formik
                   render={ props =>
                     <CreateForwarderForm {...props} /> }
-                  initialValues={initialValue}
+                  initialValues={initialForwarder}
                   validationSchema={validationSchema} />
               </Grid>
             </Grid>
@@ -171,10 +154,10 @@ CreateForwarder.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = ({Client}) => {
+const mapStateToProps = ({Forwarder}) => {
 };
 
-const mapActionsToProps = {
+const mapActionToProps = {
 };
 
-export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(CreateForwarder));
+export default connect(mapStateToProps, mapActionToProps)(withStyles(styles)(CreateForwarder));

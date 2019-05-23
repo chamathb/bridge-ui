@@ -5,12 +5,11 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Paper from '@material-ui/core/Paper';
 import withStyles from '@material-ui/core/styles/withStyles';
+
 
 const RegulatoryAttachPaper = withStyles({
   root: {
@@ -23,7 +22,7 @@ const RegulatoryAttachPaper = withStyles({
 const CreateRegulatoryForm = props => {
   const {
     values: {
-      name, testName, releaseTime, requirement, averageRelease, stage,
+      name, testName, releaseTime, requirement, averageRelease, stage, attachments
     },
     errors,
     touched,
@@ -32,13 +31,24 @@ const CreateRegulatoryForm = props => {
     isValid,
     setFieldTouched,
   } = props;
-  const change = (name, e) => {
-    e.persist();
+
+const change = (name, e) => {
+   e.persist();
     handleChange(e);
     setFieldTouched(name, true, false);
   };
 
-  //const regulatoryAttch = { name: "", testName: "", releaseTime: "", requirement: "", averageRelease: "", stage: "" };
+  /*const requirement = [
+    {value : "requirementId1", label : "Yes" },
+    {value : "requirementId2", label : "No"},
+    {value : "requirementId3", label : "Maybe"},
+
+  ];
+  drop down 
+
+  */
+
+
   const attachment = { docName: "", description: "", mandatory: "" };
   return (
     <form onSubmit={handleSubmit}>
@@ -92,7 +102,9 @@ const CreateRegulatoryForm = props => {
             label="Sample Requirement"
             fullWidth
             component={TextField}
-            variant="outlined" />
+            variant="outlined" 
+            />
+
         </Grid>
 
         <Grid item xs={6} md={6}>
@@ -127,7 +139,7 @@ const CreateRegulatoryForm = props => {
       <Divider variant="middle" />
       <br />
       <FieldArray
-        name="attachment"
+        name="attachments"
         render={arrayHelpers => (
           <div>
             <Grid container direction="row" justify="space-between" alignItems="baseline" >
@@ -139,7 +151,8 @@ const CreateRegulatoryForm = props => {
               <Grid item >
                 <Button color="primary" 
                   onClick = {() => {arrayHelpers.push(attachment)}}>
-                  {attachments && attachments.length > 0 ? "Add Another Attachment" : "Add Attachment"}
+                   {attachments && attachments.length > 0 ? "Add Another Attachment" : "Add Attachment"}
+                  
                  </Button>
               </Grid>
             </Grid>
@@ -156,7 +169,7 @@ const CreateRegulatoryForm = props => {
                       <br />
                       <Divider variant="middle" />
                       <br />
-                    </React.Fragment> : ""}
+                  </React.Fragment> : ""}
 
                     <Grid container direction="row" spacing={0} justify="space-between" alignItems="center">
                       <Grid item xs={11}>

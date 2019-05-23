@@ -183,13 +183,26 @@ class MenuDrawer extends React.Component {
             </Tooltip>
             <Tooltip title="Create Regulatory Approval" aria-label="Create Regulatory Approval">
               <ListItem  classes={{root:classes.menuItem, selected: 'selected'}} button key="Create Regulatory Approval" component={Link}
-                        to='/admin/manage/add-regulatory'>
+                        to='/admin/manage/add-regulatory'
+                        selected = {this.props.location.pathname === '/admin/manage/add-regulatory'}>
                 <ListItemIcon className={classes.menuItemIcon}><RegulatoryApprovalIcon /></ListItemIcon>
                 <ListItemText primary={
                   <Typography className={classes.menuItemText} >Create Regulatory Approval</Typography>
                 } />
+                 </ListItem>
+            </Tooltip>
+
+            <Tooltip title="Create Forwarder" aria-label="Create Forwarder">
+              <ListItem  classes={{root:classes.menuItem, selected: 'selected'}} button key="Create Vendor" component={Link}
+                         to='/admin/manage/add-forwarder'
+                         selected = {this.props.location.pathname === '/admin/manage/add-forwarder'}>
+                  <ListItemIcon className={classes.menuItemIcon}><VendorIcon /></ListItemIcon>
+                <ListItemText primary={
+                  <Typography className={classes.menuItemText} >Create Forwarder</Typography>
+                } />
               </ListItem>
             </Tooltip>
+
           </List>
         </Drawer>
       </div>

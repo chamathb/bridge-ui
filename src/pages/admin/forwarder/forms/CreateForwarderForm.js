@@ -3,14 +3,13 @@ import { FieldArray, Field } from 'formik';
 import { TextField } from 'formik-material-ui';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
-
-
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Paper from '@material-ui/core/Paper';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Divider from '@material-ui/core/Divider';
+
 
 
 
@@ -26,7 +25,7 @@ const CreateForwarderPaper = withStyles({
 const CreateForwarderForm = props => {
     const {
         vlaues : {
-            vendorName, typeofVendor, address, brg, tin, swiftAddress
+            vendor, typeofVendor, address, brg, tin, swiftAddress, contactInfo
         },
         errors,
         touched,
@@ -34,25 +33,26 @@ const CreateForwarderForm = props => {
         handleChange,
         isValid,
         setFieldTouched,
-
     } = props;
-    const change = (vendorName , e) => {
+
+
+    const change = (vendor, e) => {
         e.persist();
     handleChange(e);
-    setFieldTouched(vendorName, true, false);
+    setFieldTouched(vendor, true, false);
     };
-//ToDo: remove after; forwarder contact template.
-    const Forwarder = {vendorName: '', typeofVendor: '', address: '', brg: '', tin: '', swiftAddress: ''};
+
+    const newContact = {name: "", designation: "", contactNum: "", email: "", details: "", company: "", access: "", userName: "", types: ""};
     return(
         <form onSubmit = {handleSubmit}>
          <Grid container spacing = {24}>
-          <Grid item xs = {12} md = {6}>
-            <Field id = "vendorName"
-                    name = "vendorName"
-                    helperText={touched.vendorName ? errors.vendorName : ""}
-                    error = {touched.vendorName && Boolean(errors.vendorName)}
-                    vlaue = {vendorName}
-                    onChange = {change.bind(null, "vendorName")}
+          <Grid item xs = {6} md = {6}>
+            <Field id = "vendor"
+                    name = "vendor"
+                    helperText={touched.vendor ? errors.vendor : ""}
+                    error = {touched.vendor && Boolean(errors.vendor)}
+                    vlaue = {vendor}
+                    onChange = {change.bind(null, "vendor")}
                     label = "Vendor Name"
                     fullWidth
                     component = {TextField}
@@ -80,14 +80,14 @@ const CreateForwarderForm = props => {
                 onChange= {change.bind(null, "address")}
                 label= "Address"
                 fullWidth
-                component =  {TextField}
+                component ={TextField}
                 variant = "outlined"/>
         </Grid>
 
         <Grid item xs =  {6} md = {6}>
             <Field id = "brg"
                 name = "brg"
-                value = {address}
+                value = {brg}
                 helperText = {touched.brg ? errors.brg : ""}
                 error={touched.brg && Boolean(errors.brg)}
                 onChangen= {change.bind(null, "brg")}
@@ -103,7 +103,7 @@ const CreateForwarderForm = props => {
                 value = {tin}
                 helperText = {touched.tin ? errors.tin : ""}
                 error = {touched.tin && Boolean(errors.tin)}
-                vlaue = {tin}
+             
                 onChange = {change.bind(null, "tin")}
                 label= "TIN"
                 fullWidth
@@ -111,7 +111,7 @@ const CreateForwarderForm = props => {
                 variant = "outlined"/>
          </Grid>
 
-         <Grid item xs = {12} md = {12}>
+         <Grid item xs = {6} md = {6}>
             <Field id = "swiftAddress"
                 name =  "swiftAddress"
                 value =  {swiftAddress}
@@ -135,7 +135,7 @@ const CreateForwarderForm = props => {
          <br/>
 
          <FieldArray
-            name = "contactDetails"
+            name = "contactInfo"
             render = {arrayHelpers => (
                 <div>
                 <Grid container direction = "row" justify = "space-between" alignItems = "baseline" >
@@ -148,8 +148,8 @@ const CreateForwarderForm = props => {
 
                     <Grid item>
                         <Button color = "primary"
-                            onClick= {() => { arrayHelpers.push(contactDetails) }}>
-                            {contactDetails && contactDetails.length > 0 ? "Add Another Contact Details" : "Add Contact"}
+                            onClick= {() => { arrayHelpers.push(newContact) }}>
+                            {contactInfo && contactInfo.length > 0 ? "Add Another Contact Details" : "Add Contact"}
                         </Button>
                     </Grid>
                     </Grid>
@@ -157,7 +157,7 @@ const CreateForwarderForm = props => {
                     <br/>
 
                     {
-                        contactDetails.map((contact, index) =>(
+                        contactInfo.map((newContact, index) =>(
                             <CreateForwarderPaper elevation = {0}>
                                 {index > 0 ? <React.Fragment>
                                     <br/>
@@ -169,15 +169,15 @@ const CreateForwarderForm = props => {
                                 <Grid item xs = {11}>
                                     <Grid container direction  = "row" spacing  = {8} justify = "space-between">
                                         <Grid item xs = {4}>
-                                            <Field name = {`contactDetails.${index}.name`}
+                                            <Field name = {`newContact.${index}.name`}
                                                 label = "Name"
                                                 fullWidth
                                                 component= {TextField}
                                                 variant = "outlined"/>
                                     </Grid>
 
-                                    <Grid item xs = {4}>
-                                        <Field name = { `contactDetails.${index}.designation`}
+                                    <Grid item xs = {3}>
+                                        <Field name = { `newContact.${index}.designation`}
                                             label = "Designation"
                                             fullWidth
                                             component={TextField}
@@ -186,32 +186,32 @@ const CreateForwarderForm = props => {
 
                                         
                                     
-                                    <Grid item xs = {4}>
-                                        <Field name =  { `contactDetails.${index}.contactNo`}
+                                    <Grid item xs = {3}>
+                                        <Field name =  { `newContact.${index}.contactNum`}
                                             label = "Contact No"
                                             fullWidth
                                             component={TextField}
                                             variant = "outlined"/>
                                         </Grid>
                                    
-                                   <Grid item xs = {4}>
-                                    <Field name = {`contactDetails.${index}.email`}
+                                   <Grid item xs = {3}>
+                                    <Field name = {`newContact.${index}.email`}
                                         label = "Email"
                                         fullWidth
                                         component = {TextField}
                                         variant = "outlined" />
                                     </Grid>
 
-                                    <Grid item xs = {4}>
-                                    <Field name = {`contactDetails.${index}.details`}
+                                    <Grid item xs = {3}>
+                                    <Field name = {`newContact.${index}.details`}
                                         label = "Other Contact Details"
                                         fullWidth
                                         component=  {TextField}
                                         variant= "outlined" />
                                     </Grid>
 
-                                    <Grid   item xs = {4}>
-                                    <Field name = {`contactDetails.${index}.company`}
+                                    <Grid   item xs = {3}>
+                                    <Field name = {`newContact.${index}.company`}
                                         label = "Company Name"
                                         fullWidth
                                         component = {TextField}
@@ -219,7 +219,7 @@ const CreateForwarderForm = props => {
                                     </Grid>
 
                                     <Grid  item xs = {4}>
-                                    <Field name = {`cotactDetails.${index}.access`}
+                                    <Field name = {`newContact.${index}.access`}
                                         label = "System Access"
                                         fullWidth
                                         component = {TextField}
@@ -227,7 +227,7 @@ const CreateForwarderForm = props => {
                                     </Grid>
 
                                     <Grid item xs = {4}>
-                                    <Field name = {`contactDetails.${index}.username`}
+                                    <Field name = {`newContact.${index}.username`}
                                         label = "System User name" 
                                         fullWidth
                                         component ={TextField}
@@ -235,7 +235,7 @@ const CreateForwarderForm = props => {
                                     </Grid>
 
                                     <Grid item xs= {4}>
-                                    <Field name = {`contactDetails.${index}.type`}
+                                    <Field name = {`newContact.${index}.types`}
                                         label = "Access Type"
                                         fullWidth
                                         component = {TextField}
@@ -283,7 +283,7 @@ const CreateForwarderForm = props => {
                     </div>
                 )} />   
         </form>
-    )
-}
+    );
+};
 
 export default CreateForwarderForm;

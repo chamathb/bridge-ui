@@ -5,16 +5,10 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import AppHeader from '../../../component/AppHeader/AppHeader';
 import MenuDrawer from "../../../component/MenuDrawer/MenuDrawer";
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
-import Divider from '@material-ui/core/Divider';
 import withStyles from '@material-ui/core/styles/withStyles';
-
-import { getRegulatory, addAttachment } from './state/Actions';
-import { getClient, addContact } from './state/Actions';
 import CreateRegulatoryForm from './forms/CreateRegulatoryForm';
 
 const styles = theme => ({
@@ -77,7 +71,7 @@ const styles = theme => ({
   }
 });
 
-const valiadtionSchema = Yup.object({
+const validationSchema = Yup.object({
 
   name: Yup.string("Authority Institution Name")
     .required("Authority Institution Name cannot be empty"),
@@ -93,7 +87,6 @@ const valiadtionSchema = Yup.object({
     .required("Approval obtaing stage cannot be empty"),
 
   attachments: Yup.array()
-
     .of(
       Yup.object().shape({
         docName: Yup.string("Document Name")
@@ -111,22 +104,8 @@ const valiadtionSchema = Yup.object({
 class CreateRegulatory extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      regulatory:{ 
-        name :"",
-        testName: "",
-        release: "",
-        Timerequirement:"",
-        averageRelease:"",
-        stage:"",
-
-          attachment : [{
-            docName: "",
-            description: "",
-            mandatory : "",
-          }]
-
-      }
+    this.state={
+  
 
     };
   }
@@ -139,8 +118,15 @@ class CreateRegulatory extends React.Component {
   render() {
 
     const {classes} = this.props;
-    //const { classes, regulatory } = this.props;
-    //const initialValue = this.state.client;
+    const initialRegulatory = {
+      name : "",
+      testName : "",
+      release: "",
+      Timerequirement: "",
+      averageRelease:"",
+      Stage:"",
+      attachments: [{}],
+    };
 
     
     return (
@@ -156,15 +142,15 @@ class CreateRegulatory extends React.Component {
             <Grid container spacing={24}>
               <Grid item xs={12} md={12}>
                 <Typography variant="h5">
-                  Attachements
-        </Typography>
+                  Attachments
+                </Typography>
               </Grid>
-              <Grid>
+              <Grid item xs = {12} md ={12}>
                 <Formik
                   render={props =>
                     <CreateRegulatoryForm {...props} />}
-                  //initialValues={initialValue} 
-                  validationSchema={valiadtionSchema} />
+                  initialValues={initialRegulatory} 
+                  validationSchema={validationSchema} />
               </Grid>
             </Grid>
           </div>
@@ -181,7 +167,7 @@ CreateRegulatory.propTypes = {
 
 };
 
-const mapStateToProps = ({Regulatory }) => {
+const mapStateToProps = ({Regulatory}) => {
 
 };
 
