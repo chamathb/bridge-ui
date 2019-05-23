@@ -24,7 +24,7 @@ const CreateForwarderPaper = withStyles({
 
 const CreateForwarderForm = props => {
     const {
-        vlaues : {
+        values : {
             vendor, typeofVendor, address, brg, tin, swiftAddress, contactInfo
         },
         errors,
