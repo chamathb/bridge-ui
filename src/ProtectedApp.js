@@ -46,18 +46,18 @@ export default class ProtectedApp extends React.Component {
           />
           <Route
             path="/admin/manage/add-client"
-            component={this.state.isLoggedIn ? CreateClient : Login } />
+            component={this.state.isLoggedIn ? CreateClient : Login} />
           <Route
             path="/admin/manage/add-vendor"
-            component={this.state.isLoggedIn ? CreateVendor : Login } />
+            component={this.state.isLoggedIn ? CreateVendor : Login} />
           <Route
             path="/admin/manage/add-regulatory"
-            component={this.state.isLoggedIn ? CreateRegulatory : Login } />
+            component={this.state.isLoggedIn ? CreateRegulatory : Login} />
           <Route
-            path = "/admin/manage/add-forwarder"
+            path="/admin/manage/add-forwarder"
             component={this.state.isLoggedIn ? CreateForwarder : Login} />
 
-          
+
           <Route
             path="/login"
             component={Login} />
