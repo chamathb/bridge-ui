@@ -203,13 +203,35 @@ class MenuDrawer extends React.Component {
               </ListItem>
             </Tooltip>
 
-            <Tooltip title="Create Master" aria-label="Create Master">
-              <ListItem  classes={{root:classes.menuItem, selected: 'selected'}} button key="Create Master" component={Link}
-                         to='/admin/manage/add-master'
-                         selected = {this.props.location.pathname === '/admin/manage/add-master'}>
+            <Tooltip title="Create Payment" aria-label="Create Payment">
+              <ListItem  classes={{root:classes.menuItem, selected: 'selected'}} button key="Create Payment" component={Link}
+                         to='/admin/manage/add-payment'
+                         selected = {this.props.location.pathname === '/admin/manage/add-payment'}>
                   <ListItemIcon className={classes.menuItemIcon}><VendorIcon /></ListItemIcon>
                 <ListItemText primary={
-                  <Typography className={classes.menuItemText} >Create Master</Typography>
+                  <Typography className={classes.menuItemText} >Create Payment</Typography>
+                } />
+              </ListItem>
+            </Tooltip>
+
+            <Tooltip title="Create Incoterm" aria-label="Create Incoterm">
+              <ListItem  classes={{root:classes.menuItem, selected: 'selected'}} button key="Create Incoterm" component={Link}
+                         to='/admin/manage/add-incoterm'
+                         selected = {this.props.location.pathname === '/admin/manage/add-incoterm'}>
+                  <ListItemIcon className={classes.menuItemIcon}><VendorIcon /></ListItemIcon>
+                <ListItemText primary={
+                  <Typography className={classes.menuItemText} >Create Incoterm</Typography>
+                } />
+              </ListItem>
+            </Tooltip>
+
+            <Tooltip title="Create B/L types" aria-label="Create B/L types">
+              <ListItem  classes={{root:classes.menuItem, selected: 'selected'}} button key="Create B/L types" component={Link}
+                         to='/admin/manage/add-bltypes'
+                         selected = {this.props.location.pathname === '/admin/manage/add-bltypes'}>
+                  <ListItemIcon className={classes.menuItemIcon}><VendorIcon /></ListItemIcon>
+                <ListItemText primary={
+                  <Typography className={classes.menuItemText} >Create B/L types</Typography>
                 } />
               </ListItem>
             </Tooltip>
