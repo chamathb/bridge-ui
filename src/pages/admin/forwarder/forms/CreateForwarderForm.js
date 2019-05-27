@@ -24,7 +24,7 @@ const CreateForwarderPaper = withStyles({
 
 const CreateForwarderForm = props => {
     const {
-        vlaues : {
+        values : {
             vendor, typeofVendor, address, brg, tin, swiftAddress, contactInfo
         },
         errors,
@@ -166,7 +166,7 @@ const CreateForwarderForm = props => {
                                 </React.Fragment> : ""}
                             
                             <Grid container direction = "row" spacing = {0} justify = "space-between" alignItems = "center">
-                                <Grid item xs = {11}>
+                                <Grid item xs = {10}>
                                     <Grid container direction  = "row" spacing  = {8} justify = "space-between">
                                         <Grid item xs = {4}>
                                             <Field name = {`newContact.${index}.name`}
@@ -176,7 +176,7 @@ const CreateForwarderForm = props => {
                                                 variant = "outlined"/>
                                     </Grid>
 
-                                    <Grid item xs = {3}>
+                                    <Grid item xs = {4}>
                                         <Field name = { `newContact.${index}.designation`}
                                             label = "Designation"
                                             fullWidth
@@ -186,7 +186,7 @@ const CreateForwarderForm = props => {
 
                                         
                                     
-                                    <Grid item xs = {3}>
+                                    <Grid item xs = {4}>
                                         <Field name =  { `newContact.${index}.contactNum`}
                                             label = "Contact No"
                                             fullWidth
@@ -194,7 +194,7 @@ const CreateForwarderForm = props => {
                                             variant = "outlined"/>
                                         </Grid>
                                    
-                                   <Grid item xs = {3}>
+                                   <Grid item xs = {4}>
                                     <Field name = {`newContact.${index}.email`}
                                         label = "Email"
                                         fullWidth
@@ -202,7 +202,7 @@ const CreateForwarderForm = props => {
                                         variant = "outlined" />
                                     </Grid>
 
-                                    <Grid item xs = {3}>
+                                    <Grid item xs = {4}>
                                     <Field name = {`newContact.${index}.details`}
                                         label = "Other Contact Details"
                                         fullWidth
@@ -210,7 +210,7 @@ const CreateForwarderForm = props => {
                                         variant= "outlined" />
                                     </Grid>
 
-                                    <Grid   item xs = {3}>
+                                    <Grid   item xs = {4}>
                                     <Field name = {`newContact.${index}.company`}
                                         label = "Company Name"
                                         fullWidth
@@ -243,6 +243,14 @@ const CreateForwarderForm = props => {
                                     </Grid>
                                     </Grid>
                                     </Grid>
+
+<Field
+  name="rqvmnt" 
+  component="select" 
+  placeholder="rqvmnt">   
+     <option value="Yes">yes</option>
+     <option value="no">no</option>
+</Field>
 
                         <Grid Item>
                             <IconButton aria-label = "Delete"

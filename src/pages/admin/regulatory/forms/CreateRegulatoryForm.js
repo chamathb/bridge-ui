@@ -10,6 +10,13 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import Paper from '@material-ui/core/Paper';
 import withStyles from '@material-ui/core/styles/withStyles';
 
+import { makeStyles } from '@material-ui/core/styles';
+import Input from '@material-ui/core/Input';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+import FilledInput from '@material-ui/core/FilledInput';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+
 
 const RegulatoryAttachPaper = withStyles({
   root: {
@@ -38,15 +45,6 @@ const change = (name, e) => {
     setFieldTouched(name, true, false);
   };
 
-  /*const requirement = [
-    {value : "requirementId1", label : "Yes" },
-    {value : "requirementId2", label : "No"},
-    {value : "requirementId3", label : "Maybe"},
-
-  ];
-  drop down 
-
-  */
 
 
   const attachment = { docName: "", description: "", mandatory: "" };
@@ -104,8 +102,10 @@ const change = (name, e) => {
             component={TextField}
             variant="outlined" 
             />
-
         </Grid>
+    
+        
+        
 
         <Grid item xs={6} md={6}>
           <Field id="averageRelease"
@@ -151,7 +151,7 @@ const change = (name, e) => {
               <Grid item >
                 <Button color="primary" 
                   onClick = {() => {arrayHelpers.push(attachment)}}>
-                   {attachments && attachments.length > 0 ? "Add Another Attachment" : "Add Attachment"}
+                   {attachments && attachments.length > 0 ? "Add Attachment" : "Add Attachment"}
                   
                  </Button>
               </Grid>

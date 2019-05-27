@@ -10,6 +10,9 @@ import CreateClient from "./pages/admin/client/CreateClient";
 import CreateVendor from "./pages/admin/vendor/CreateVendor";
 import CreateRegulatory from "./pages/admin/regulatory/CreateRegulatory";
 import CreateForwarder from "./pages/admin/forwarder/CreateForwarder";
+import CreateBlTypes from "./pages/admin/masterdata/CreateBlTypes";
+import CreateIncoterm from "./pages/admin/masterdata/CreateIncoterm";
+import CreatePayment from "./pages/admin/masterdata/CreatePayment";
 
 export default class ProtectedApp extends React.Component {
   constructor(props) {
@@ -56,6 +59,15 @@ export default class ProtectedApp extends React.Component {
           <Route
             path="/admin/manage/add-forwarder"
             component={this.state.isLoggedIn ? CreateForwarder : Login} />
+          <Route
+            path="/admin/manage/add-bltypes"
+            component={this.state.isLoggedIn ? CreateBlTypes : Login} />
+          <Route
+            path="/admin/manage/add-incoterm"
+            component={this.state.isLoggedIn ? CreateIncoterm : Login} />
+          <Route
+            path="/admin/manage/add-payment"
+            component={this.state.isLoggedIn ? CreatePayment : Login} />
 
 
           <Route

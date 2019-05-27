@@ -9,8 +9,8 @@ import Typography from '@material-ui/core/Typography';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import withStyles from '@material-ui/core/styles/withStyles';
-import CreateRegulatoryForm from './forms/CreateRegulatoryForm';
 import { render } from 'react-dom';
+import CreateBlTypesForm from './forms/CreateBlTypesForm';
 
 const styles = theme => ({
   root: {
@@ -73,37 +73,26 @@ const styles = theme => ({
 });
 
 const validationSchema = Yup.object({
+  bltypes : Yup.array()
+.of(
+  Yup.object().shape({
+    bltype:Yup.string("B/L Type")
+    .required("B/L Type cannot be empty"),
+    strategy : Yup.string("Release Strategy")
+    .required("Release Strategy cannot be empty"),
+    blDescription:Yup.string("Description")
+    .required("Description cannot be empty"),
+    blStatus:Yup.string("Status")
+    .required("Status cannot be empty"),
+  })
+)
+})
 
-  name: Yup.string("Authority Institution Name")
-    .required("Authority Institution Name cannot be empty"),
-  testName: Yup.string("Refernce Test Name")
-    .required("Reference Test Name cannot be empty"),
-  releaseTime: Yup.string("Release Time In Days")
-    .required("This field cannot be empty"),
-  requirement: Yup.string("Sample Requirement")
-    .required("Sample Requiremnt cannot be empty"),
-  averageRelease: Yup.string("Average Release Time")
-    .required("Average release time cannot be empty"),
-  stage: Yup.string("Approval Obtaining Stage")
-    .required("Approval obtaing stage cannot be empty"),
-  
 
-  attachments: Yup.array()
-    .of(
-      Yup.object().shape({
-        docName: Yup.string("Document Name")
-          .required("Document name cannot be empty"),
-        description: Yup.string("Description")
-          .required("Description cannot be empty"),
-        mandatory: Yup.string("Mandatory")
-          .required("Mandatory field cannot be empty"),
 
-      })
-    )
-  
-});
 
-class CreateRegulatory extends React.Component {
+
+class CreateBlTypes extends React.Component {
   constructor(props) {
     super(props);
     this.state={
@@ -111,24 +100,19 @@ class CreateRegulatory extends React.Component {
 
     };
   }
-
   componentDidMount() {
 
   }
 
-  
   render() {
 
     const {classes} = this.props;
-    const initialRegulatory = {
-      name : "",
-      testName : "",
-      release: "",
-      Timerequirement: "",
-      averageRelease:"",
-      Stage:"",
-      attachments: [{}],
+    const initialBlTypes = {
+     
+      bltypes: [{}],
+    
     };
+
 
     
     return (
@@ -144,15 +128,16 @@ class CreateRegulatory extends React.Component {
             <Grid container spacing={24}>
               <Grid item xs={12} md={12}>
                 <Typography variant="h5">
-                  Regulatory Approval
+                  B/L Type
                 </Typography>
               </Grid>
               <Grid item xs = {12} md ={12}>
                 <Formik
                   render={props =>
-                    <CreateRegulatoryForm {...props} />}
-                  initialValues={initialRegulatory} 
+                    <CreateBlTypesForm {...props} />}
+                  initialValues={initialBlTypes}  ///regulatory need to be rename
                   validationSchema={validationSchema} />
+
               </Grid>
             </Grid>
           </div>
@@ -162,14 +147,16 @@ class CreateRegulatory extends React.Component {
 
     );
   }
+
 }
 
-CreateRegulatory.propTypes = {
+
+CreateBlTypes.propTypes = {
   classes: PropTypes.object.isRequired,
 
 };
 
-const mapStateToProps = ({Regulatory}) => {
+const mapStateToProps = ({MasterBl}) => {
 
 };
 
@@ -177,4 +164,6 @@ const mapActionToProps = {
 
 };
 
-export default connect(mapStateToProps, mapActionToProps)(withStyles(styles)(CreateRegulatory));
+export default connect(mapStateToProps, mapActionToProps)(withStyles(styles)(CreateBlTypes));
+
+

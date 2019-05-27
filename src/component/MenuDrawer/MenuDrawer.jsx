@@ -203,6 +203,17 @@ class MenuDrawer extends React.Component {
               </ListItem>
             </Tooltip>
 
+            <Tooltip title="Create Master" aria-label="Create Master">
+              <ListItem  classes={{root:classes.menuItem, selected: 'selected'}} button key="Create Master" component={Link}
+                         to='/admin/manage/add-master'
+                         selected = {this.props.location.pathname === '/admin/manage/add-master'}>
+                  <ListItemIcon className={classes.menuItemIcon}><VendorIcon /></ListItemIcon>
+                <ListItemText primary={
+                  <Typography className={classes.menuItemText} >Create Master</Typography>
+                } />
+              </ListItem>
+            </Tooltip>
+
           </List>
         </Drawer>
       </div>
