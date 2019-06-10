@@ -244,13 +244,6 @@ const CreateForwarderForm = props => {
                                     </Grid>
                                     </Grid>
 
-<Field
-  name="rqvmnt" 
-  component="select" 
-  placeholder="rqvmnt">   
-     <option value="Yes">yes</option>
-     <option value="no">no</option>
-</Field>
 
                         <Grid Item>
                             <IconButton aria-label = "Delete"

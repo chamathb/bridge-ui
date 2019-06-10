@@ -54,7 +54,9 @@ const CreateIncotermForm = props => {
               <Grid container direction = "row" justify = "space-between" alignItems = "baseline" >
                      <Grid item >
                         <Typography variant =  "sub-title">
-                        Incoterms
+                        {
+                        //Incoterms
+                        }
                         </Typography>
 
                     </Grid>

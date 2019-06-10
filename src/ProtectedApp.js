@@ -13,6 +13,7 @@ import CreateForwarder from "./pages/admin/forwarder/CreateForwarder";
 import CreateBlTypes from "./pages/admin/masterdata/CreateBlTypes";
 import CreateIncoterm from "./pages/admin/masterdata/CreateIncoterm";
 import CreatePayment from "./pages/admin/masterdata/CreatePayment";
+import CreateAdvancePay from "./pages/admin/advancePay/CreateAdvancePay";
 
 export default class ProtectedApp extends React.Component {
   constructor(props) {
@@ -68,6 +69,9 @@ export default class ProtectedApp extends React.Component {
           <Route
             path="/admin/manage/add-payment"
             component={this.state.isLoggedIn ? CreatePayment : Login} />
+          <Route
+            path="/admin/manage/add-advancepay"
+            component= {this.state.isLoggedIn ? CreateAdvancePay : Login} />
 
 
           <Route

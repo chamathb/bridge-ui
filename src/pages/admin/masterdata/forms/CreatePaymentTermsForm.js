@@ -67,7 +67,10 @@ const CreatePaymentTermsForm = props => {
               <Grid container direction = "row" justify = "space-between" alignItems = "baseline" >
                      <Grid item >
                         <Typography variant =  "sub-title">
-                        Payment Terms
+                       
+                       {
+                         // Payment Terms
+                       }
                         </Typography>
 
                     </Grid>

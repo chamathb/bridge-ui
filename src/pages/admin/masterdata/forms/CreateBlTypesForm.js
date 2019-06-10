@@ -53,7 +53,8 @@ const CreateBlTypesForm = props => {
               <Grid container direction = "row" justify = "space-between" alignItems = "baseline" >
                      <Grid item >
                         <Typography variant =  "sub-title">
-                        B/l type
+                        {//B/l type
+                        }
                         </Typography>
 
                     </Grid>
