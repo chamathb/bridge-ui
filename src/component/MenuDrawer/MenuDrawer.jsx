@@ -183,13 +183,59 @@ class MenuDrawer extends React.Component {
             </Tooltip>
             <Tooltip title="Create Regulatory Approval" aria-label="Create Regulatory Approval">
               <ListItem  classes={{root:classes.menuItem, selected: 'selected'}} button key="Create Regulatory Approval" component={Link}
-                        to='/admin/manage/add-regulatory'>
+                        to='/admin/manage/add-regulatory'
+                        selected = {this.props.location.pathname === '/admin/manage/add-regulatory'}>
                 <ListItemIcon className={classes.menuItemIcon}><RegulatoryApprovalIcon /></ListItemIcon>
                 <ListItemText primary={
                   <Typography className={classes.menuItemText} >Create Regulatory Approval</Typography>
                 } />
+                 </ListItem>
+            </Tooltip>
+
+            <Tooltip title="Create Forwarder" aria-label="Create Forwarder">
+              <ListItem  classes={{root:classes.menuItem, selected: 'selected'}} button key="Create Vendor" component={Link}
+                         to='/admin/manage/add-forwarder'
+                         selected = {this.props.location.pathname === '/admin/manage/add-forwarder'}>
+                  <ListItemIcon className={classes.menuItemIcon}><VendorIcon /></ListItemIcon>
+                <ListItemText primary={
+                  <Typography className={classes.menuItemText} >Create Forwarder</Typography>
+                } />
               </ListItem>
             </Tooltip>
+
+            <Tooltip title="Create Payment" aria-label="Create Payment">
+              <ListItem  classes={{root:classes.menuItem, selected: 'selected'}} button key="Create Payment" component={Link}
+                         to='/admin/manage/add-payment'
+                         selected = {this.props.location.pathname === '/admin/manage/add-payment'}>
+                  <ListItemIcon className={classes.menuItemIcon}><VendorIcon /></ListItemIcon>
+                <ListItemText primary={
+                  <Typography className={classes.menuItemText} >Create Payment</Typography>
+                } />
+              </ListItem>
+            </Tooltip>
+
+            <Tooltip title="Create Incoterm" aria-label="Create Incoterm">
+              <ListItem  classes={{root:classes.menuItem, selected: 'selected'}} button key="Create Incoterm" component={Link}
+                         to='/admin/manage/add-incoterm'
+                         selected = {this.props.location.pathname === '/admin/manage/add-incoterm'}>
+                  <ListItemIcon className={classes.menuItemIcon}><VendorIcon /></ListItemIcon>
+                <ListItemText primary={
+                  <Typography className={classes.menuItemText} >Create Incoterm</Typography>
+                } />
+              </ListItem>
+            </Tooltip>
+
+            <Tooltip title="Create B/L types" aria-label="Create B/L types">
+              <ListItem  classes={{root:classes.menuItem, selected: 'selected'}} button key="Create B/L types" component={Link}
+                         to='/admin/manage/add-bltypes'
+                         selected = {this.props.location.pathname === '/admin/manage/add-bltypes'}>
+                  <ListItemIcon className={classes.menuItemIcon}><VendorIcon /></ListItemIcon>
+                <ListItemText primary={
+                  <Typography className={classes.menuItemText} >Create B/L types</Typography>
+                } />
+              </ListItem>
+            </Tooltip>
+
           </List>
         </Drawer>
       </div>
